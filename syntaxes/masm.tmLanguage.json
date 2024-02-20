@@ -1,0 +1,97 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Miden Assembly",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#ctrl-statements"
+		},
+		{
+			"include": "#function-declaration"
+		},
+		{
+			"include": "#function-call"
+		},
+		{
+			"include": "#parameterized-instructions"
+		},
+		{
+			"include": "#values"
+		},
+		{
+			"include": "#calls"
+		},
+		{
+			"include": "#exec"
+		},
+		{
+			"include": "#ns"
+		},
+		{
+			"include": "#conditional"
+		}	
+	],
+	"repository": {
+	
+		"conditional": {
+			"patterns": [
+				{
+					"begin": "\\b(if|else|while|repeat|export|proc|repeat)\\b",
+					"end": "\\b(end)\\b",
+					"captures": {
+						"1": {
+							"name": "keyword.operator.masm"
+						}
+					},
+					 "patterns": [
+            { "include": "source.masm" }
+          ]
+				}
+			]
+		},
+
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.masm",
+					"match": "#.*"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.statement.masm",
+				"match": "\\b(begin|end|use|assert|assertz|assert_eq|assert_eqw|add|sub|mul|div|neg|inv|pow2|exp|not|and|or|xor|eq|neq|lt|lte|gt|gte|is_odd|eqw|ext2add|ext2sub|ext2mul|ext2div|ext2neg|ext2inv|u32test|u32testw|u32assert|u32assert2|u32assertw|u32cast|u32split|u32checked_add|u32wrapping_add|u32overflowing_add|u32overflowing_add3|u32wrapping_add3|u32checked_sub|u32wrapping_sub|u32overflowing_sub|u32checked_mul|u32wrapping_mul|u32overflowing_mul|u32overflowing_madd|u32wrapping_madd|u32checked_div|u32unchecked_div|u32checked_mod|u32unchecked_mod|u32checked_divmod|u32unchecked_divmod|u32checked_and|u32checked_or|u32checked_xor|u32checked_not|u32checked_shr|u32unchecked_shr|u32checked_shl|u32unchecked_shl|u32checked_rotr|u32unchecked_rotr|u32checked_rotl|u32unchecked_rotl|u32checked_popcnt|u32unchecked_popcnt|u32checked_eq|u32checked_neq|u32checked_lt|u32unchecked_lt|u32checked_lte|u32unchecked_lte|u32checked_gt|u32unchecked_gt|u32checked_gte|u32unchecked_gte|u32checked_min|u32unchecked_min|u32checked_max|u32unchecked_max|drop|dropw|padw|dup|dupw|swap|swapw|swapdw|movup|movupw|movdn|movdnw|cswap|cswapw|cdrop|cdropw|push|sdepth|locaddr|caller|clk|mem_load|loc_load|mem_loadw|loc_loadw|mem_store|loc_store|mem_storew|loc_storew|mem_stream|adv_pipe|adv_push|adv_loadw|adv|hash|hmerge|hperm|mtree_get|mtree_set|mtree_merge|mtree_verify|fri_ext2fold4|exec|call|syscall|dynexec|dyncall|const|breakpoint|debug)\\b"
+			}]
+		},
+
+
+			"ns": {
+			"patterns": [{
+				"match": "\\b\\.([^:]+?)\\b",
+				"captures": {
+					"1": {
+						"name": "entity.name.section"
+					}
+				}
+			},{
+				"name": "entity.name.namespace.masm",
+				"match": "\\b(::)([^:]+?)\\b",
+				"captures": {
+					"1": {
+						"name": "punctuation.separator.namespace"
+					},
+					"2": {
+						"name": "entity.name.method"
+					}
+				}
+			}]
+		}
+	},
+	"scopeName": "source.masm"
+}

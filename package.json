@@ -6,10 +6,12 @@
   },
   "displayName": "miden-assembly",
   "description": "Miden Assembly",
-  "version": "0.0.1",
+  "icon": "./assets/logo.png",
+  "version": "0.1.1",
   "engines": {
     "vscode": "^1.86.0"
   },
+  "publisher": "dlock",
   "categories": [
     "Programming Languages"
   ],
